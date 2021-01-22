@@ -2,6 +2,8 @@
 
 [![License][license-image]][license-url]
 ![Coverage][coverage-image]
+[![dev-tavern](https://circleci.com/gh/dev-tavern/vue-validus/tree/develop.svg?style=svg)](https://circleci.com/gh/dev-tavern/vue-validus/tree/develop)
+[![codecov](https://codecov.io/gh/dev-tavern/vue-validus/branch/develop/graph/badge.svg?token=IFCU4CBZWR)](https://codecov.io/gh/dev-tavern/vue-validus)
 
 ## WORK IN PROGRESS
 
