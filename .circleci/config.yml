@@ -13,6 +13,8 @@ jobs:
       - node/install-packages
       - run:
           command: npm run test
+      - run:
+          command: bash <(curl -s https://codecov.io/bash)
 
 workflows:
   ci:
