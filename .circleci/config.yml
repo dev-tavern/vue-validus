@@ -1,6 +1,8 @@
+# https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
 orbs:
+  # https://circleci.com/developer/orbs/orb/circleci/node
   node: circleci/node@4.1
 
 jobs:
