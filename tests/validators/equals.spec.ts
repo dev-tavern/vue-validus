@@ -51,13 +51,6 @@ describe('equals validator', () => {
     expect(equals('test').execute('test1')).toBe(false)
   })
 
-  // it('field has error message when invalid', () => {
-  //   const validator = equals('invalid')
-  //   const testField = field('test', [validator])
-  //   testField.validate()
-  //   expect(testField.errorMessages).toContain(validator.message)
-  // })
-
   it('returns true when equals ref value', () => {
     const testRef = ref('test')
     const validator = equals(testRef)
