@@ -1,0 +1,61 @@
+{
+  "name": "vue-validus",
+  "version": "1.0.0-beta.1",
+  "description": "Extensible lightweight validation library for Vue 3",
+  "author": "Josh Gamble",
+  "license": "MIT",
+  "main": "dist/vue-validus.cjs.js",
+  "module": "dist/vue-validus.esm.js",
+  "browser": "dist/vue-validus.umd.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": "https://github.com/dev-tavern/vue-validus",
+  "scripts": {
+    "build": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly true --removeComments false",
+    "postbuild": "npm run build:types",
+    "test": "jest --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test && npm run lint",
+    "preversion": "npm run lint && npm run test",
+    "version": "npm run lint:fix && git add -A src",
+    "postversion": "git push && git push --tags",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "ci:test": "jest --coverage --ci --maxWorkers=2"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.19",
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "@typescript-eslint/parser": "^4.9.1",
+    "@vue/test-utils": "^2.0.0-beta.13",
+    "eslint": "^7.15.0",
+    "jest": "^26.6.3",
+    "rollup": "^2.35.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.2",
+    "vitepress": "^0.9.1",
+    "vue": "^3.0.0"
+  },
+  "keywords": [
+    "validus",
+    "vue",
+    "vue 3",
+    "validation",
+    "validate",
+    "form",
+    "fields"
+  ]
+}
