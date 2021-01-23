@@ -18,7 +18,8 @@ module.exports = {
   rules: {
     'indent': ['error', 2],
     'quotes': ['error', 'single'],
-    'semi': ['error', 'never']
+    'semi': ['error', 'never'],
+    'eol-last': ['error', 'always']
   },
   overrides: [
     {
