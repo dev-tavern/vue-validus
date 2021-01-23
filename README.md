@@ -95,7 +95,7 @@ export default defineComponent({
 
 ## Changelog
 
-Changes for each release are documented in the [CHANGELOG](CHANGELOG) file.
+Changes for each release are documented in the [CHANGELOG](CHANGELOG.md) file.
 
 ## License
 
