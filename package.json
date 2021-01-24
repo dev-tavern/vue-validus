@@ -12,6 +12,7 @@
     "dist/**/*"
   ],
   "repository": "https://github.com/dev-tavern/vue-validus",
+  "homepage": "https://vue-validus.devtavern.com",
   "scripts": {
     "build": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly true --removeComments false",
