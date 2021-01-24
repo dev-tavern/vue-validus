@@ -2,8 +2,8 @@
 
 [![License][license-image]][license-url]
 [![NPM][npm-image]][npm-url]
-[![codecov](https://codecov.io/gh/dev-tavern/vue-validus/branch/main/graph/badge.svg?token=IFCU4CBZWR)](https://codecov.io/gh/dev-tavern/vue-validus)
-[![dev-tavern](https://circleci.com/gh/dev-tavern/vue-validus.svg?style=svg)](https://circleci.com/gh/dev-tavern/vue-validus)
+[![codecov][codecov-image]][codecov-url]
+[![circleci][circleci-image]][circleci-url]
 
 > Extensible, lightweight validation library for Vue 3
 
@@ -105,3 +105,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [npm-url]: https://npmjs.org/package/vue-validus
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
+[codecov-image]: https://codecov.io/gh/dev-tavern/vue-validus/branch/main/graph/badge.svg?token=IFCU4CBZWR
+[codecov-url]: https://codecov.io/gh/dev-tavern/vue-validus
+[circleci-image]: https://circleci.com/gh/dev-tavern/vue-validus.svg?style=svg
+[circleci-url]: https://circleci.com/gh/dev-tavern/vue-validus
