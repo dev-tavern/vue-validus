@@ -9,13 +9,9 @@ export function getFromFields(fields: FieldGroupProps, fieldName: string): Field
     let tempPath = ''
     for (let i = 0; i < parts.length; i++) {
       tempPath += `${parts[i]}`
-      if (fields[tempPath]) {
-        const field = fields[tempPath]
-        if (field.__kind === 'FieldGroup') {
-          return field.get(parts.splice(i + 1).join('.'))
-        } else {
-          return field
-        }
+      const field = fields[tempPath]
+      if (isFieldGroup(field)) {
+        return (field as FieldGroup).get(parts.splice(i + 1).join('.'))
       }
       tempPath += '.'
     }
