@@ -55,9 +55,7 @@ function createEntry(config) {
 
 // CommonJS (for Node)
 // ES module (for bundlers)
-// UMD (for browser)
 export default createEntries([
   { input: 'src/index.ts', file: pkg.main, format: 'cjs' },
-  { input: 'src/index.ts', file: pkg.module, format: 'es' },
-  { input: 'src/index.ts', file: pkg.browser, format: 'umd' }
+  { input: 'src/index.ts', file: pkg.module, format: 'es' }
 ])
