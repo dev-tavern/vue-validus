@@ -38,4 +38,13 @@ describe('utils.getFromFields', () => {
     expect(getFromFields(fields, 'nestedGroup1.nestedGroup2.nestedField2')).toBe(fields.nestedGroup1.nestedGroup2.nestedField2)
   })
 
+  it('returns null for unknown field', () => {
+    expect(getFromFields(fields, 'unknownField')).toBe(null)
+  })
+
+  it('returns null for unknown nested field', () => {
+    expect(getFromFields(fields, 'nestedGroup1.unknownField')).toBe(null)
+    expect(getFromFields(fields, 'unknownGroup.unknownField')).toBe(null)
+  })
+
 })
