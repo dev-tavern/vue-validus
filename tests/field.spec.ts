@@ -45,6 +45,15 @@ describe('field', () => {
     expect(testField.errorMessages[0]).toBe('custom error message')
   })
 
+  it('contains single error when duplicate validators are invalid', () => {
+    const validator1 = minLength(10)
+    const validator2 = minLength(10)
+    const testField = field([validator1, validator2], 'test')
+    testField.validate()
+    expect(testField.errors).toHaveLength(1)
+    expect(testField.errorMessages).toHaveLength(1)
+  })
+
   it('removes all errors when cleared', () => {
     const testField = field([minLength(10)], 'test')
     testField.validate()

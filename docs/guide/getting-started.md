@@ -122,3 +122,29 @@ export default defineComponent({
 />
 <span v-if="form.inputField.invalid">{{ form.inputField.errorMessages }}</span>
 ```
+
+---
+
+**Using the Options API's data**
+It is recommended to define your validation field & field groups within the component's `setup` function as demonstrated in the above examples.  However, if needed, you can define these within the Options API's `data` structure.
+
+```typescript
+import { defineComponent } from 'vue'
+import { field, fieldGroup, required } from 'vue-validus'
+export default defineComponent({
+  data() {
+    return {
+      form: fieldGroup({
+        inputField: field([required()], 'Initial value')
+      })
+    }
+  }
+})
+```
+```html
+<input type="text"
+  v-model="form.inputField.value"
+  @blur="form.inputField.validate()"
+/>
+<span v-if="form.inputField.invalid">{{ form.inputField.errorMessages }}</span>
+```

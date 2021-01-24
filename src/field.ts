@@ -43,7 +43,7 @@ function internalClear(errors: string[], errorMessages: string[], invalid: Ref<b
 }
 
 function internalHasError(errors: string[], name: string): boolean {
-  return errors ? errors.includes(name) : false
+  return errors && errors.includes(name)
 }
 
 function internalAddValidator(validators: Validator[], validator: Validator) {

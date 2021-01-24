@@ -9,6 +9,10 @@ describe('match validator', () => {
     expect(match(StringPattern).execute('abc')).toBe(true)
   })
 
+  it('returns true when no value', () => {
+    expect(match(StringPattern).execute(undefined)).toBe(true)
+  })
+
   it('returns false when not matching string pattern', () => {
     expect(match(StringPattern).execute('abcd')).toBe(false)
   })

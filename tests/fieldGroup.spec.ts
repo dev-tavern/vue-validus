@@ -56,7 +56,7 @@ describe('fieldGroup', () => {
 
   it('contains error field when invalid', () => {
     const targetField = invalidField()
-    const testFieldGroup = fieldGroup({ targetField })
+    const testFieldGroup = fieldGroup({ targetField, validField: validField() })
     testFieldGroup.validate()
     const errorsFields = testFieldGroup.getErrorFields()
     expect(errorsFields).toHaveLength(1)
@@ -178,6 +178,16 @@ describe('fieldGroup with data source', () => {
     data.nestedGroup.targetField2.value = 'nested2'
     expect(testFieldGroup.targetField.value).toEqual(data.targetField.value)
     expect(testFieldGroup.nestedGroup.targetField2.value).toEqual(data.nestedGroup.targetField2.value)
+  })
+
+  it('does not map values for unknown fields', () => {
+    const data = reactive({
+      unknownField: 'test'
+    })
+    const testFieldGroup = fieldGroup({
+      targetField: field([minLength(4)])
+    }, data)
+    expect(testFieldGroup.targetField.value).not.toEqual(data.unknownField)
   })
 
   it('validates against current value for reactive object', () => {
