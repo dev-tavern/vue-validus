@@ -1,6 +1,6 @@
 {
   "name": "vue-validus",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Extensible lightweight validation library for Vue 3",
   "author": "Josh Gamble",
   "license": "MIT",
