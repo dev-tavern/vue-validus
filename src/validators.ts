@@ -106,7 +106,7 @@ const executeEqualsByFieldName = (equalToFieldName: string) => (value: any, cont
   let equalToValue = null
   if (context) {
     const field = context.get(equalToFieldName)
-    if (isField(field)) equalToValue = unref(field?.value)
+    if (field && isField(field)) equalToValue = unref(field.value)
   }
   return (hasValue(value) || hasValue(equalToValue)) ? value === equalToValue : true
 }
