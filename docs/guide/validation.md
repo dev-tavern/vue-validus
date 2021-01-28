@@ -37,7 +37,7 @@ For example, the `required` and `max` validator messages can be customized like 
 ```typescript
 import { field, max, required } from 'vue-validus'
 const field1 = field([required('custom message 1')])
-const field2 = field([max(5, 'custom message 2'), 6])
+const field2 = field([max(5, 'custom message 2')], 6)
 field1.validate()
 field2.validate()
 field1.errorMessages // ['custom message 1']
