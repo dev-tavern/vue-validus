@@ -38,7 +38,8 @@ export function getLength(value: any): number {
 }
 
 export function hasValue(value: any): boolean {
-  if (!value) {
+  if (value !== 0 && !value) {
+    // !value checks:  undefined, null, empty string (''), 0, NaN, false
     return false
   }
   if (Array.isArray(value)) {
