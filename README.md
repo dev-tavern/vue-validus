@@ -4,6 +4,9 @@
 [![NPM][npm-image]][npm-url]
 [![codecov][codecov-image]][codecov-url]
 [![circleci][circleci-image]][circleci-url]
+![minified][minified-image]
+![minzipped][minzipped-image]
+![tree-shaking][tree-shaking-image]
 
 > Extensible, lightweight validation library for Vue 3
 
@@ -109,3 +112,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [codecov-url]: https://codecov.io/gh/dev-tavern/vue-validus
 [circleci-image]: https://circleci.com/gh/dev-tavern/vue-validus.svg?style=svg
 [circleci-url]: https://circleci.com/gh/dev-tavern/vue-validus
+[minified-image]: https://badgen.net/bundlephobia/min/vue-validus
+[minzipped-image]: https://badgen.net/bundlephobia/minzip/vue-validus
+[tree-shaking-image]: https://badgen.net/bundlephobia/tree-shaking/vue-validus
