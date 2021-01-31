@@ -34,8 +34,8 @@ describe('required validator', () => {
     expect(required().execute(new Date(''))).toBe(false)
   })
 
-  it('returns false when 0', () => {
-    expect(required().execute(0)).toBe(false)
+  it('returns true when 0', () => {
+    expect(required().execute(0)).toBe(true)
   })
 
   it('returns true when true', () => {
