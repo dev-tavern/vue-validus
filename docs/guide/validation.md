@@ -24,6 +24,8 @@ The following validators are provided:
 * numeric
 * required
 * requiredIf
+* word
+* sentences
 
 ## Custom
 

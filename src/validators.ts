@@ -224,3 +224,25 @@ export function max(maximum: number, message?: string): Validator {
     execute: executeMax(maximum)
   }
 }
+
+const WORD_REGEX = /^[a-zA-Z]+$/
+
+export function word(message?: string): Validator {
+  if(!message) message = 'Must be a word'
+  return {
+    name: 'word',
+    message: message,
+    execute: match(WORD_REGEX).execute
+  }
+}
+
+const SENTENCE_REGEX = /((?:[A-Z]\.|[^\.!?])+)[\.!?]/g
+
+export function sentences(message?: string): Validator {
+  if(!message) message = 'Must be a sentence with punctuation'
+  return {
+    name: 'sentence(s)',
+    message: message,
+    execute: match(SENTENCE_REGEX).execute
+  }
+}
