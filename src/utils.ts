@@ -19,6 +19,14 @@ export function getFromFields(fields: FieldGroupProps, fieldName: string): Field
   return null
 }
 
+export function getValueFromFields(fields: FieldGroupProps, fieldName: string): any {
+  const field = getFromFields(fields, fieldName)
+  if (isField(field)) {
+    return (field as Field).value
+  }
+  return null
+}
+
 export function isField(f: any): boolean {
   return Boolean(f && f.__kind === 'Field')
 }

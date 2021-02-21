@@ -134,6 +134,42 @@ describe('fieldGroup', () => {
     expect(testFieldGroup.get('invalidField')).toEqual(null)
   })
 
+  it('returns field value when getValue called with field name', () => {
+    const targetField = validField()
+    const testFieldGroup = fieldGroup({ targetField })
+    expect(testFieldGroup.getValue('targetField')).toEqual(targetField.value)
+  })
+
+  it('returns nested field value when getValue called with field path', () => {
+    const targetField = validField()
+    const testFieldGroup = fieldGroup({
+      nestedFieldGroup: fieldGroup({
+        targetField
+      })
+    })
+    const testFieldGroup2 = fieldGroup({
+      nestedFieldGroup: fieldGroup({
+        nestedFieldGroup2: fieldGroup({
+          targetField
+        })
+      })
+    })
+    expect(testFieldGroup.getValue('nestedFieldGroup.targetField')).toEqual(targetField.value)
+    expect(testFieldGroup2.getValue('nestedFieldGroup.nestedFieldGroup2.targetField')).toEqual(targetField.value)
+  })
+
+  it('returns null when getValue called with fieldGroup name', () => {
+    const targetFieldGroup = fieldGroup({})
+    const testFieldGroup = fieldGroup({ targetFieldGroup })
+    expect(testFieldGroup.getValue('targetFieldGroup')).toEqual(null)
+  })
+
+  it('returns null when getValue called with non-exsting field name', () => {
+    const targetField = validField()
+    const testFieldGroup = fieldGroup({ targetField })
+    expect(testFieldGroup.getValue('invalidField')).toEqual(null)
+  })
+
 })
 
 describe('fieldGroup with data source', () => {

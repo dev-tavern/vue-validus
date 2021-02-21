@@ -4,7 +4,7 @@ describe('custom validator', () => {
 
   it('evalutes condition with context provided', () => {
     const condition = (context?: FieldGroupType) => {
-      if (context && context.field1 && context.field1.value === 'yes') {
+      if (context && context.getValue('field1') === 'yes') {
         return true
       }
       return false
