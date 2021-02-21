@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0] - TBD
+## [1.0.0] - 2021-02-20
 
 * Initial release for vue-validus, includes:
   * field & field group implementations
