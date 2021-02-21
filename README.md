@@ -14,6 +14,8 @@
 
 View the [documentation](https://vue-validus.devtavern.com) for a complete guide, including examples and API reference.
 
+For support with Vue 2 Composition API, use [vue2-validus](https://github.com/dev-tavern/vue2-validus).
+
 ### Install
 ```bash
 # install with npm
