@@ -1,6 +1,6 @@
 import { Ref, reactive, computed, toRef, ComputedRef } from 'vue'
 import { Field } from '.'
-import { getFromFields } from './utils'
+import { getFromFields, getValueFromFields } from './utils'
 
 export interface FieldGroupProps {
   [key: string]: Field | FieldGroup
@@ -23,13 +23,22 @@ export interface FieldGroup {
    */
   clear(): void
   /**
-   * Get a nested field / field group by name.
+   * Get a member field / field group by name.
    * @param fieldName 
    * @example
    * const form = fieldGroup({ address: fieldGroup({ zip: field(...) }) })
    * const zipField = form.get('address.zip')
    */
   get(fieldName: string): Field | FieldGroupType | null
+  /**
+   * Get a member field's value by name.
+   * @param fieldName 
+   * @example
+   * const form = fieldGroup({ address: fieldGroup({ zip: field(...) }) })
+   * const zipValue = form.getValue('address.zip')
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getValue(fieldName: string): any
   /**
    * Get all invalid fields / field groups within the field group.
    */
@@ -123,11 +132,12 @@ export function fieldGroup<T extends FieldGroupProps>(fields: T, data?: Record<s
   fieldGroupObj.validate = (fieldName?: string) => internalValidate(fields, fieldName)
   fieldGroupObj.clear = () => internalClear(fields)
   fieldGroupObj.get = (fieldName: string) => getFromFields(fields, fieldName)
+  fieldGroupObj.getValue = (fieldName: string) => getValueFromFields(fields, fieldName)
   fieldGroupObj.getErrorFields = () => internalGetErrorFields(fields, invalid)
   fieldGroupObj.setTopLevel = (context: FieldGroup) => internalSetTopLevel(__topLevel, fields, context)
 
   // inject self into child fields (assume self as top level context)
-  const selfContext = { get: fieldGroupObj.get, ...fields } as FieldGroupType<T>
+  const selfContext = { get: fieldGroupObj.get, getValue: fieldGroupObj.getValue, ...fields } as FieldGroupType<T>
   for (const field of Object.entries(fields)) {
     field[1].setTopLevel(selfContext)
   }

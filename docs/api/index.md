@@ -306,6 +306,26 @@ Get all invalid fields / field groups within the field group.
 function getErrorFields(): (Field | FieldGroupType)[]
 ```
 
+### getValue
+
+Get a field value by name (can be nested).
+
+**Signature:**
+```typescript
+function getValue(fieldName: string): any
+```
+
+```typescript
+const form = fieldGroup({
+  field1: field([minLength(5)], 'A'),
+  nestedGroup: fieldGroup({
+    field2: field([required()], 'B')
+  })
+})
+form.getValue('field1') // 'A'
+form.getValue('nestedGroup.field2') // 'B'
+```
+
 # Validators
 
 ## Validators: Built-In
@@ -734,7 +754,7 @@ const custom: Validator = {
   name: 'custom',
   message: 'an error message',
   execute: (value, context) => {
-    if (context && context.field2 && context.field2.value === 'yes') {
+    if (context && context.getValue('field2') === 'yes') {
       return ['valid', 'values', 'array'].includes(value)
     }
     return true

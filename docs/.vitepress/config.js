@@ -3,17 +3,13 @@ module.exports = {
   title: 'Vue-Validus',
   description: 'Extensible lightweight validation library for Vue 3',
 
-  head: [
-    // ['link', { rel: 'icon', href: `/logo.png` }]
-  ],
+  head: [],
 
   themeConfig: {
     repo: 'dev-tavern/vue-validus',
     docsDir: 'docs',
     nav: [
-      {
-        text: 'Guide', link: '/guide/'
-      },
+      { text: 'Guide', link: '/guide/' },
       { text: 'API Reference', link: '/api/' }
     ],
     sidebarDepth: 4,
