@@ -40,6 +40,8 @@
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
     "@vue/test-utils": "^2.0.0-beta.13",
+    "babel-plugin-array-includes": "^2.0.3",
+    "babel-plugin-transform-es2017-object-entries": "0.0.5",
     "eslint": "^7.15.0",
     "jest": "^26.6.3",
     "rollup": "^2.35.1",

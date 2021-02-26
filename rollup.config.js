@@ -20,13 +20,17 @@ const typescriptPlugin = typescript({
 
 const babelConfig = {
   babelrc: false,
+  babelHelpers: 'bundled',
   presets: ['@babel/preset-env'],
   exclude: ['node_modules/**'],
   extensions: [
     ...DEFAULT_EXTENSIONS,
     '.ts', '.tsx'
   ],
-  babelHelpers: 'bundled'
+  plugins: [
+    'transform-es2017-object-entries',
+    'array-includes'
+  ]
 }
 
 function createEntries(configs) {
