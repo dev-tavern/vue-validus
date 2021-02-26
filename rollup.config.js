@@ -1,6 +1,8 @@
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
+import babel from '@rollup/plugin-babel'
+import { DEFAULT_EXTENSIONS } from '@babel/core'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
 
@@ -15,6 +17,17 @@ const typescriptPlugin = typescript({
   clean: true,
   useTsconfigDeclarationDir: true
 })
+
+const babelConfig = {
+  babelrc: false,
+  presets: ['@babel/preset-env'],
+  exclude: ['node_modules/**'],
+  extensions: [
+    ...DEFAULT_EXTENSIONS,
+    '.ts', '.tsx'
+  ],
+  babelHelpers: 'bundled'
+}
 
 function createEntries(configs) {
   return configs.map(c => createEntry(c))
@@ -45,6 +58,7 @@ function createEntry(config) {
   c.plugins.push(resolve())
   c.plugins.push(commonjs())
   c.plugins.push(typescriptPlugin)
+  c.plugins.push(babel(babelConfig))
 
   if (config.minify) {
     c.plugins.push(terser({ module: config.format === 'es' }))
