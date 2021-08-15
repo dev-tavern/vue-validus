@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3] - 2021-08-15
+
+* Bump glob-parent from 5.1.1 to 5.1.2
+* Bump postcss from 7.0.35 to 7.0.36
+* Bump prismjs from 1.23.0 to 1.24.0
+* Bump path-parse from 1.0.6 to 1.0.7
+
 ## [1.0.2] - 2021-05-30
 
 * Bump ws from 7.4.1 to 7.4.6
@@ -23,6 +30,7 @@
   * typings
   * vitepress docs
 
+[1.0.3]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.3
 [1.0.2]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.2
 [1.0.1]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.1
 [1.0.0]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.0
