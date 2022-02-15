@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.4] - 2022-02-14
+
+* Bump follow-redirects from 1.13.1 to 1.14.8
+* Bump tmpl from 1.0.4 to 1.0.5
+* Bump prismjs from 1.24.0 to 1.25.0
+
 ## [1.0.3] - 2021-08-15
 
 * Bump glob-parent from 5.1.1 to 5.1.2
@@ -30,6 +36,7 @@
   * typings
   * vitepress docs
 
+[1.0.4]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.4
 [1.0.3]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.3
 [1.0.2]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.2
 [1.0.1]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.1
