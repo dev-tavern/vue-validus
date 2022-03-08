@@ -1,15 +1,15 @@
-import { Ref, ref, unref, reactive } from 'vue'
+import { reactive, Ref, toRef, unref } from 'vue'
 import { FieldGroup, Validator } from '.'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface Field<T = any> {
   __kind: 'Field'
-  value: T | Ref<T>
+  value: T
   /**
    * If the field is currently considered invalid (did not pass latest validation).  
    * `true` if invalid, `false` if valid.
    */
-  invalid: boolean | Ref<boolean>
+  invalid: boolean
   /**
    * List of failing validator names.
    */
@@ -81,21 +81,19 @@ function internalValidate(fieldObj: Field, validators: Validator[], __topLevel?:
  * @param fieldValue
  */
 export function field<T>(validators: Validator[], fieldValue?: T | Ref<T>): Field<T> {
-  const value = ref(fieldValue)
-  const invalid = ref(false)
   const errors: string[] = []
   const errorMessages: string[] = []
   let __topLevel: FieldGroup | undefined = undefined
 
   const fieldObj = reactive<Field>({
-    value,
-    invalid,
+    value: fieldValue,
+    invalid: false,
     errors,
     errorMessages
   } as Field)
 
   fieldObj.__kind = 'Field'
-  fieldObj.clear = () => internalClear(errors, errorMessages, invalid)
+  fieldObj.clear = () => internalClear(errors, errorMessages, toRef(fieldObj, 'invalid'))
   fieldObj.hasError = (name: string) => internalHasError(errors, name)
   fieldObj.addValidator = (validator: Validator) => internalAddValidator(validators, validator)
   fieldObj.removeValidator = (validator: string | Validator) => internalRemoveValidator(validators, validator)
