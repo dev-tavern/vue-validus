@@ -1,4 +1,4 @@
-import { Ref, reactive, computed, toRef, ComputedRef } from 'vue'
+import { computed, reactive, Ref, toRef } from 'vue'
 import { Field } from '.'
 import { getFromFields, getValueFromFields } from './utils'
 
@@ -12,7 +12,7 @@ export interface FieldGroup {
    * If the field group is currently considered invalid (did not pass latest validation).
    * `true` if any fields / field groups are invalid, `false` if all are valid.
    */
-  invalid: boolean | Ref<boolean> | ComputedRef<boolean>
+  invalid: boolean
   /**
    * Validate all fields within the field group.
    * Optionally, provide a name to validate a specific field / field group.
