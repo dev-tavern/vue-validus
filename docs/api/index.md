@@ -21,7 +21,7 @@ fieldValue | T \| Ref\<T\> | (Optional) Initial value of the field.  If a Vue Re
 
 ### value
 
-- **Type**: `T | Ref<T>`
+- **Type**: `T`
 - **Details**: The current value of the field, is provided to validators upon validation.  If this is set with a Vue ref, the field and ref will maintain the same value (if the ref value changes, the field value will reflect the change as well).
 
 ### invalid
@@ -776,8 +776,8 @@ field1.validate() // false (invalid - field2 is 'yes' and field1's value is not 
 ```typescript
 interface Field<T = any> {
   __kind: 'Field'
-  value: T | Ref<T>
-  invalid: boolean | Ref<boolean>
+  value: T
+  invalid: boolean
   errors: string[]
   errorMessages: string[]
   validate(): boolean
@@ -795,10 +795,11 @@ interface Field<T = any> {
 interface FieldGroup {
   __kind: 'FieldGroup'
   fields: FieldGroupProps
-  invalid: boolean | Ref<boolean> | ComputedRef<boolean>
+  invalid: boolean
   validate(fieldName?: string): boolean
   clear(): void
   get(fieldName: string): Field | FieldGroupType | null
+  getValue(fieldName: string): any
   getErrorFields(): (Field | FieldGroupType)[]
   setTopLevel(context: FieldGroup): void
 }

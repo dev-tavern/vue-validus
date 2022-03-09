@@ -11,7 +11,7 @@ export function getFromFields(fields: FieldGroupProps, fieldName: string): Field
       tempPath += `${parts[i]}`
       const field = fields[tempPath]
       if (isFieldGroup(field)) {
-        return (field as FieldGroup).get(parts.splice(i + 1).join('.'))
+        return field.get(parts.splice(i + 1).join('.'))
       }
       tempPath += '.'
     }
@@ -22,16 +22,16 @@ export function getFromFields(fields: FieldGroupProps, fieldName: string): Field
 export function getValueFromFields(fields: FieldGroupProps, fieldName: string): any {
   const field = getFromFields(fields, fieldName)
   if (isField(field)) {
-    return (field as Field).value
+    return field.value
   }
   return null
 }
 
-export function isField(f: any): boolean {
+export function isField(f: any): f is Field {
   return Boolean(f && f.__kind === 'Field')
 }
 
-export function isFieldGroup(f: any): boolean {
+export function isFieldGroup(f: any): f is FieldGroup {
   return Boolean(f && f.__kind === 'FieldGroup')
 }
 
