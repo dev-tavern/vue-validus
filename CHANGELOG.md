@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5] - 2022-03-08
+
+* Update `Field` types for properties: `value`, `invalid`
+* Update `FieldGroup` type for property: `invalid`
+* Update type guards for `Field` and `FieldGroup`
+* Update api documentation
+* Bump prismjs from 1.25.0 to 1.27.0
+
 ## [1.0.4] - 2022-02-14
 
 * Bump follow-redirects from 1.13.1 to 1.14.8
@@ -36,6 +44,7 @@
   * typings
   * vitepress docs
 
+[1.0.5]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.5
 [1.0.4]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.4
 [1.0.3]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.3
 [1.0.2]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.2
