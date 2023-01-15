@@ -1,7 +1,7 @@
 {
   "name": "vue-validus",
   "version": "1.0.5",
-  "description": "Extensible lightweight validation library for Vue 3",
+  "description": "Extensible lightweight validation library for Vue",
   "author": "Josh Gamble",
   "license": "MIT",
   "main": "dist/vue-validus.cjs.js",
@@ -29,8 +29,17 @@
     "docs:serve": "vitepress serve docs",
     "ci:test": "jest --coverage --ci --maxWorkers=2"
   },
+  "dependencies": {
+    "vue-demi": "^0.13.11"
+  },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.13.1",
@@ -51,7 +60,7 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "ts-jest": "^26.4.4",
     "typescript": "^4.1.2",
-    "vitepress": "^0.9.1",
+    "vitepress": "^0.22.4",
     "vue": "^3.0.0"
   },
   "keywords": [

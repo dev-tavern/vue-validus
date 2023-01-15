@@ -1,4 +1,4 @@
-import { computed, reactive, Ref, toRef } from 'vue'
+import { computed, reactive, Ref, toRef } from 'vue-demi'
 import { Field } from '.'
 import { getFromFields, getValueFromFields } from './utils'
 
@@ -126,7 +126,7 @@ export function fieldGroup<T extends FieldGroupProps>(fields: T, data?: Record<s
   const fieldGroupObj = reactive({
     ...fields,
     invalid
-  }) as FieldGroupType<T>
+  }) as unknown as FieldGroupType<T>
 
   fieldGroupObj.__kind = 'FieldGroup'
   fieldGroupObj.validate = (fieldName?: string) => internalValidate(fields, fieldName)
