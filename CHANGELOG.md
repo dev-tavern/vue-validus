@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.6] - 2022-01-16
+## [1.0.6] - 2023-01-16
 
 - Add support for Vue 2
   - By leveraging vue-demi, this package is now usable by both Vue 2 & 3
