@@ -1,7 +1,7 @@
 {
   "name": "vue-validus",
   "version": "1.0.5",
-  "description": "Extensible lightweight validation library for Vue 3",
+  "description": "Extensible lightweight validation library for Vue",
   "author": "Josh Gamble",
   "license": "MIT",
   "main": "dist/vue-validus.cjs.js",
