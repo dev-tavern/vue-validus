@@ -1,14 +1,17 @@
 # Changelog
 
-## [1.0.6] - TBD
+## [1.0.6] - 2022-01-16
 
-- Bumps minimist from 1.2.5 to 1.2.6
-- Bumps jsdom from 16.4.0 to 16.7.0
-- Bumps terser from 5.5.1 to 5.14.2
-- Bumps minimatch from 3.0.4 to 3.1.2
-- Bumps loader-utils from 1.4.0 to 1.4.2
-- Bumps decode-uri-component from 0.2.0 to 0.2.2
-- Bumps vitepress from 0.9.1 to 0.22.4
+- Add support for Vue 2
+  - By leveraging vue-demi, this package is now usable by both Vue 2 & 3
+  - The vue2-validus project, which specifically supports Vue 2, will be deprecated
+- Bump minimist from 1.2.5 to 1.2.6
+- Bump jsdom from 16.4.0 to 16.7.0
+- Bump terser from 5.5.1 to 5.14.2
+- Bump minimatch from 3.0.4 to 3.1.2
+- Bump loader-utils from 1.4.0 to 1.4.2
+- Bump decode-uri-component from 0.2.0 to 0.2.2
+- Bump vitepress from 0.9.1 to 0.22.4
 
 ## [1.0.5] - 2022-03-08
 
@@ -54,6 +57,7 @@
   - typings
   - vitepress docs
 
+[1.0.6]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.6
 [1.0.5]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.5
 [1.0.4]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.4
 [1.0.3]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.3
