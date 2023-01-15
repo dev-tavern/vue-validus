@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Ref, ComputedRef, unref, toRef } from 'vue'
+import { Ref, ComputedRef, unref, toRef } from 'vue-demi'
 import { FieldGroupType } from '.'
 import { getLength, hasValue, isField } from './utils'
 
@@ -28,7 +28,7 @@ const executeRequiredIf = (condition: boolean | Ref<boolean> | ComputedRef<boole
   if (typeof condition === 'function') {
     doExecute = condition(context)
   } else {
-    doExecute = unref(condition)
+    doExecute = unref<boolean>(condition)
   }
   if (doExecute) {
     return hasValue(value)
