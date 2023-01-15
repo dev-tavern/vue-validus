@@ -32,27 +32,27 @@ Below is a simple example of one approach for leveraging vue-validus for validat
 #### Composition API
 
 ```typescript
-import { defineComponent, ref } from "vue";
-import { field, fieldGroup, required } from "vue-validus";
+import { defineComponent, ref } from 'vue'
+import { field, fieldGroup, required } from 'vue-validus'
 export default defineComponent({
   setup() {
     // example: field group containing fields with values sourced from refs
-    const username = ref("");
-    const password = ref("");
+    const username = ref('')
+    const password = ref('')
     const form = fieldGroup({
       username: field([required()], username),
-      password: field([required()], password),
-    });
+      password: field([required()], password)
+    })
     // example: validate entire group at once and check result
     const handleSubmit = () => {
-      form.validate();
+      form.validate()
       if (!form.invalid) {
         // submit...
       }
-    };
-    return { username, password, form, handleSubmit };
-  },
-});
+    }
+    return { username, password, form, handleSubmit }
+  }
+})
 ```
 
 At this point, since our field values are backed by refs, you could set an input's v-model attribute to either `username` or `form.username.value`, both will maintain the same value between them.
@@ -72,18 +72,18 @@ At this point, since our field values are backed by refs, you could set an input
 It is recommended to define your validation field & field groups within the component's `setup` function as demonstrated in the above Composition API example. However, if needed, you can define these within the Options API's `data` structure.
 
 ```typescript
-import { defineComponent } from "vue";
-import { field, fieldGroup, required } from "vue-validus";
+import { defineComponent } from 'vue'
+import { field, fieldGroup, required } from 'vue-validus'
 export default defineComponent({
   data() {
     return {
       form: fieldGroup({
-        username: field([required()], "<optional initial value>"),
-        password: field([required()]),
-      }),
-    };
-  },
-});
+        username: field([required()], '<optional initial value>'),
+        password: field([required()])
+      })
+    }
+  }
+})
 ```
 
 ```html
