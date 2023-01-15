@@ -83,3 +83,6 @@ temp/
 *_BASE_*.txt
 *_LOCAL_*.txt
 *_REMOTE_*.txt
+
+# NVM
+.nvmrc
