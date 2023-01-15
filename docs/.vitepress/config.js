@@ -1,7 +1,7 @@
 module.exports = {
   lang: 'en-US',
   title: 'Vue-Validus',
-  description: 'Extensible lightweight validation library for Vue 3',
+  description: 'Extensible lightweight validation library for Vue',
 
   head: [],
 
