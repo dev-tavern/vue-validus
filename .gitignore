@@ -54,7 +54,9 @@ typings/
 .env.test
 
 # vuepress build output
-.vuepress/dist
+docs/.vuepress/dist
+docs/.vitepress/dist
+docs/.vitepress/cache
 
 # Temporary folders
 tmp/

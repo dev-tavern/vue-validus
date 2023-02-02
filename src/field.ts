@@ -1,4 +1,4 @@
-import { reactive, Ref, toRef, unref } from 'vue'
+import { reactive, Ref, toRef, unref } from 'vue-demi'
 import { FieldGroup, Validator } from '.'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

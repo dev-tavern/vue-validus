@@ -8,15 +8,16 @@
 ![minzipped][minzipped-image]
 ![tree-shaking][tree-shaking-image]
 
-> Extensible, lightweight validation library for Vue 3
+> Extensible, lightweight validation library for Vue
 
 ## Get Started
 
 View the [documentation](https://vue-validus.devtavern.com) for a complete guide, including examples and API reference.
 
-For support with Vue 2 Composition API, use [vue2-validus](https://github.com/dev-tavern/vue2-validus).
+Starting from version 1.0.6, this library supports both Vue 3 and Vue 2 + Composition API. Earlier versions support only Vue 3.
 
 ### Install
+
 ```bash
 # install with npm
 npm install vue-validus --save
@@ -26,7 +27,7 @@ yarn add vue-validus --save
 
 ### Usage
 
-Below is a simple example of one approach for leveraging vue-validus for validation, for more detailed examples and additional approaches, please visit the [documentation](https://vue-validus.devtavern.com).  This example will use Vue refs as the source for the field values, though you could also use a reactive object or just the fields themselves without separate value properties.
+Below is a simple example of one approach for leveraging vue-validus for validation, for more detailed examples and additional approaches, please visit the [documentation](https://vue-validus.devtavern.com). This example will use Vue refs as the source for the field values, though you could also use a reactive object or just the fields themselves without separate value properties.
 
 #### Composition API
 
@@ -53,12 +54,11 @@ export default defineComponent({
   }
 })
 ```
+
 At this point, since our field values are backed by refs, you could set an input's v-model attribute to either `username` or `form.username.value`, both will maintain the same value between them.
+
 ```html
-<input type="text"
-  v-model="username"
-  @blur="form.username.validate()"
-/>
+<input type="text" v-model="username" @blur="form.username.validate()" />
 <!-- check if field is invalid and display error messages -->
 <span v-if="form.username.invalid">{{ form.username.errorMessages }}</span>
 <!-- or check if field has specific error -->
@@ -69,7 +69,7 @@ At this point, since our field values are backed by refs, you could set an input
 
 #### Options API
 
-It is recommended to define your validation field & field groups within the component's `setup` function as demonstrated in the above Composition API example.  However, if needed, you can define these within the Options API's `data` structure.
+It is recommended to define your validation field & field groups within the component's `setup` function as demonstrated in the above Composition API example. However, if needed, you can define these within the Options API's `data` structure.
 
 ```typescript
 import { defineComponent } from 'vue'
@@ -85,8 +85,10 @@ export default defineComponent({
   }
 })
 ```
+
 ```html
-<input type="text"
+<input
+  type="text"
   v-model="form.username.value"
   @blur="form.username.validate()"
 />

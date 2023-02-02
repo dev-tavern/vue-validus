@@ -46,7 +46,7 @@ function createEntry(config) {
       file: config.file, 
       format: config.format
     },
-    external: ['vue'],
+    external: ['vue-demi', 'vue', '@vue/composition-api'],
     onwarn: (msg, warn) => {
       if (!/Circular/.test(msg)) {
         warn(msg)
@@ -56,7 +56,10 @@ function createEntry(config) {
   
   if (config.format === 'umd') {
     c.output.name = c.output.name || 'vue-validus'
-    c.output.globals = { 'vue': 'vue' }
+    c.output.globals = { 
+      'vue-demi': 'VueDemi',
+      vue: 'Vue',
+      '@vue/composition-api': 'vueCompositionApi'}
   }
 
   c.plugins.push(resolve())
