@@ -1,6 +1,10 @@
 ---
-home: true
-actionText: Get Started →
-actionLink: /guide/
-footer: MIT Licensed | Copyright © 2021-present Josh Gamble
+layout: home
+
+hero:
+  name: Vue-Validus
+  text: Extensible validation library for Vue
+  actions:
+    - text: Get Started →
+      link: /guide/
 ---
