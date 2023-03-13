@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.7] - 2023-03-13
+
+- Fix reactivity of field `errorMessages` when clearing a field object
+- Enhance TypeScript support for field group
+
 ## [1.0.6] - 2023-01-16
 
 - Add support for Vue 2
@@ -57,6 +62,7 @@
   - typings
   - vitepress docs
 
+[1.0.7]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.7
 [1.0.6]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.6
 [1.0.5]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.5
 [1.0.4]: https://github.com/dev-tavern/vue-validus/releases/tag/v1.0.4
