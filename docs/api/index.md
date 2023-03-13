@@ -144,8 +144,8 @@ If a data object is provided, the values of the data object will be applied to t
 
 **Signature:**
 ```typescript
-function fieldGroup<T extends FieldGroupProps>(
-  fields: T,
+function fieldGroup<T = any>(
+  fields: FieldGroupProps<T>,
   data?: Record<string, unknown>
 ): FieldGroupType<T>
 ```
@@ -615,8 +615,8 @@ Validates that a field has a value, if the provided condition is met.
 
 **Signature:**
 ```typescript
-function requiredIf(
-  condition: boolean | Ref<boolean> | ComputedRef<boolean> | ((context?: FieldGroupType) => boolean), 
+function requiredIf<ContextType = any>(
+  condition: ValidatorCondition<ContextType>, 
   message?: string
 ): Validator
 ```
@@ -624,7 +624,7 @@ function requiredIf(
 **Parameters:**
 **Parameter**|**Type**|**Description**
 :-----|:-----|:-----
-condition | boolean \| Ref\<boolean\> \| ComputedRef\<boolean\> \| ((context?: [FieldGroupType](#fieldgrouptype)) => boolean) | The condition to be evaluated for determining if the field is required.  This can be a simple boolean value, a Vue Ref boolean, or a function which takes a root FieldGroup argument (if the field is a member of a field group) and returns a boolean representing if the field is required.
+condition | [ValidatorCondition](#validatorcondition) | The condition to be evaluated for determining if the field is required.  This can be a simple boolean value, a Vue Ref boolean, or a function which takes a root FieldGroup argument (if the field is a member of a field group) and returns a boolean representing if the field is required.
 message | string | (Optional) Custom error message when invalid (will override default message)
 
 ::: tip Note
@@ -805,32 +805,36 @@ interface FieldGroup {
 }
 ```
 
-### FieldGroupProps
-
-```typescript
-interface FieldGroupProps {
-  [key: string]: Field | FieldGroup
-}
-```
-
 ### Validator
 
 ```typescript
-interface Validator {
+export interface Validator<T = any, ContextType = any> {
   name: string
   message?: string
-  execute(value: any, context?: FieldGroupType): boolean
+  execute(value: T, context?: FieldGroupType<ContextType>): boolean
 }
+```
+
+### ValidatorCondition
+
+```typescript
+export type ValidatorCondition<T = any> = boolean | Ref<boolean> | ComputedRef<boolean> | ((context?: FieldGroupType<T> | undefined) => boolean)
 ```
 
 ## Typescript: Types
 
+### FieldGroupProps
+
+```typescript
+export type FieldGroupProps<T = any> = {
+  [K in keyof T]: T[K] extends Record<string, unknown> ? FieldGroupType<T[K]> : Field<T[K]>
+}
+```
+
 ### FieldGroupType
 
 ```typescript
-type FieldGroupType<T extends FieldGroupProps = any> = FieldGroup & {
-  [K in keyof T]: T[K]
-}
+export type FieldGroupType<T = any> = FieldGroup & FieldGroupProps<T>
 ```
 
 # Utils
@@ -843,7 +847,7 @@ Constructs a plain object (key/value pairs) from a [FieldGroup](#fieldgroup) obj
 
 **Signature:**
 ```typescript
-function toPlainObject(fieldGroup: FieldGroup): any
+function toPlainObject<T = any>(fieldGroup: FieldGroup): T
 ```
 
 ```typescript

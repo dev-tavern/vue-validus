@@ -5,7 +5,7 @@ Validations are defined and leveraged using Fields and FieldGroups.  A `Field` d
 **Function**|**Returns**|**Description**
 :-----|:-----|:-----
 `field<T>(validators: Validator[], fieldValue?: T)` | `Field<T>` | Create a Field with the provided validators and optional value.  Can be validated alone or as part of a FieldGroup.  The provided field value can be a Vue Ref object, in which case the value of this field and the Ref will be kept in sync.
-`fieldGroup<T extends FieldGroupProps>(fields: T, data?: Record<string, unknown>)` | `FieldGroupType<T>` | Create a group of fields / field groups which can be validated and inspected via a single object.  If a data object is provided, the values of the data object will be applied to the properties (field and/or field groups) of this field group.  If the provided data object is a Vue reactive object or object containing Vue refs, the values within the field group will remain in sync with the provided data object.
+`fieldGroup<T>(fields: FieldGroupProps<T>, data?: Record<string, unknown>)` | `FieldGroupType<T>` | Create a group of fields / field groups which can be validated and inspected via a single object.  If a data object is provided, the values of the data object will be applied to the properties (field and/or field groups) of this field group.  If the provided data object is a Vue reactive object or object containing Vue refs, the values within the field group will remain in sync with the provided data object.
 
 ## Examples
 
