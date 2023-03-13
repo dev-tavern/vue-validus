@@ -1,4 +1,4 @@
-import { reactive, Ref, toRef, unref } from 'vue-demi'
+import { reactive, Ref, unref } from 'vue-demi'
 import { FieldGroup, Validator } from '.'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,14 +36,14 @@ export interface Field<T = any> {
   setTopLevel(context: FieldGroup): void
 }
 
-function internalClear(errors: string[], errorMessages: string[], invalid: Ref<boolean>) {
-  errors.splice(0, errors.length)
-  errorMessages.splice(0, errorMessages.length)
-  invalid.value = false
+function internalClear(fieldObj: Field) {
+  fieldObj.errors.splice(0, fieldObj.errors.length)
+  fieldObj.errorMessages.splice(0, fieldObj.errorMessages.length)
+  fieldObj.invalid = false
 }
 
-function internalHasError(errors: string[], name: string): boolean {
-  return errors && errors.includes(name)
+function internalHasError(fieldObj: Field, name: string): boolean {
+  return fieldObj.errors && fieldObj.errors.includes(name)
 }
 
 function internalAddValidator(validators: Validator[], validator: Validator) {
@@ -81,20 +81,18 @@ function internalValidate(fieldObj: Field, validators: Validator[], __topLevel?:
  * @param fieldValue
  */
 export function field<T>(validators: Validator[], fieldValue?: T | Ref<T>): Field<T> {
-  const errors: string[] = []
-  const errorMessages: string[] = []
   let __topLevel: FieldGroup | undefined = undefined
 
   const fieldObj = reactive<Field>({
     value: fieldValue,
     invalid: false,
-    errors,
-    errorMessages
+    errors: [] as string[],
+    errorMessages: [] as string[]
   } as Field)
 
   fieldObj.__kind = 'Field'
-  fieldObj.clear = () => internalClear(errors, errorMessages, toRef(fieldObj, 'invalid'))
-  fieldObj.hasError = (name: string) => internalHasError(errors, name)
+  fieldObj.clear = () => internalClear(fieldObj)
+  fieldObj.hasError = (name: string) => internalHasError(fieldObj, name)
   fieldObj.addValidator = (validator: Validator) => internalAddValidator(validators, validator)
   fieldObj.removeValidator = (validator: string | Validator) => internalRemoveValidator(validators, validator)
   fieldObj.validate = () => internalValidate(fieldObj, validators, __topLevel)
