@@ -26,7 +26,7 @@ export interface FieldGroup {
    * const form = fieldGroup({ address: fieldGroup({ zip: field(...) }) })
    * const zipField = form.get('address.zip')
    */
-  get(fieldName: string): Field | FieldGroupType | null
+  get(fieldName: string): Field | FieldGroup | null
   /**
    * Get a member field's value by name.
    * @param fieldName 
@@ -38,7 +38,7 @@ export interface FieldGroup {
   /**
    * Get all invalid fields / field groups within the field group.
    */
-  getErrorFields(): (Field | FieldGroupType)[]
+  getErrorFields(): (Field | FieldGroup)[]
   setTopLevel(context: FieldGroup): void
 }
 

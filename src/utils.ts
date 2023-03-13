@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { Field, FieldGroup, FieldGroupProps, FieldGroupType } from '.'
+import { Field, FieldGroup, FieldGroupProps } from '.'
 
-export function getFromFields(fields: FieldGroupProps, fieldName: string): Field | FieldGroupType | null {
+export function getFromFields(fields: FieldGroupProps, fieldName: string): Field | FieldGroup | null {
   if (fields[fieldName]) return fields[fieldName]
   if (fieldName.includes('.')) {
     const parts = fieldName.split('.')
