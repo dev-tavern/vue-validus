@@ -68,7 +68,7 @@ export function hasValue(value: any): boolean {
   return true
 }
 
-export function toPlainObject(fieldGroup: FieldGroup): any {
+export function toPlainObject<T = any>(fieldGroup: FieldGroup): T {
   const result: any = {}
   for (const entry of Object.entries(fieldGroup)) {
     if (isField(entry[1])) {

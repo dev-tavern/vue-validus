@@ -1,5 +1,5 @@
 import { reactive, Ref, unref } from 'vue-demi'
-import { FieldGroup, Validator } from '.'
+import { FieldGroup, FieldGroupType, Validator } from '.'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface Field<T = any> {
@@ -58,7 +58,7 @@ function internalRemoveValidator(validators: Validator[], validator: string | Va
   }
 }
 
-function internalValidate(fieldObj: Field, validators: Validator[], __topLevel?: FieldGroup): boolean {
+function internalValidate(fieldObj: Field, validators: Validator[], __topLevel?: FieldGroupType): boolean {
   if (!validators || validators.length < 1) return true
   fieldObj.clear()
   validators.forEach(v => {
@@ -81,7 +81,7 @@ function internalValidate(fieldObj: Field, validators: Validator[], __topLevel?:
  * @param fieldValue
  */
 export function field<T>(validators: Validator[], fieldValue?: T | Ref<T>): Field<T> {
-  let __topLevel: FieldGroup | undefined = undefined
+  let __topLevel: FieldGroupType | undefined = undefined
 
   const fieldObj = reactive<Field>({
     value: fieldValue,
@@ -96,7 +96,7 @@ export function field<T>(validators: Validator[], fieldValue?: T | Ref<T>): Fiel
   fieldObj.addValidator = (validator: Validator) => internalAddValidator(validators, validator)
   fieldObj.removeValidator = (validator: string | Validator) => internalRemoveValidator(validators, validator)
   fieldObj.validate = () => internalValidate(fieldObj, validators, __topLevel)
-  fieldObj.setTopLevel = (context: FieldGroup) => __topLevel = context
+  fieldObj.setTopLevel = (context: FieldGroupType) => __topLevel = context
 
   return fieldObj
 }

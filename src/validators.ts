@@ -4,11 +4,13 @@ import { Ref, ComputedRef, unref, toRef } from 'vue-demi'
 import { FieldGroupType } from '.'
 import { getLength, hasValue, isField } from './utils'
 
-export interface Validator {
+export interface Validator<T = any, ContextType = any> {
   name: string
   message?: string
-  execute(value: any, context?: FieldGroupType): boolean
+  execute(value: T, context?: FieldGroupType<ContextType>): boolean
 }
+
+export type ValidatorCondition<T = any> = boolean | Ref<boolean> | ComputedRef<boolean> | ((context?: FieldGroupType<T> | undefined) => boolean)
 
 /**
  * Field must have a value.
@@ -23,7 +25,7 @@ export function required(message?: string): Validator {
   }
 }
 
-const executeRequiredIf = (condition: boolean | Ref<boolean> | ComputedRef<boolean> | ((context?: FieldGroupType) => boolean)) => (value: any, context?: FieldGroupType) => {
+const executeRequiredIf = (condition: ValidatorCondition) => (value: any, context?: FieldGroupType) => {
   let doExecute = false
   if (typeof condition === 'function') {
     doExecute = condition(context)
@@ -42,7 +44,7 @@ const executeRequiredIf = (condition: boolean | Ref<boolean> | ComputedRef<boole
  * @param condition 
  * @param message 
  */
-export function requiredIf(condition: boolean | Ref<boolean> | ComputedRef<boolean> | ((context?: FieldGroupType) => boolean), message?: string): Validator {
+export function requiredIf<ContextType = any>(condition: ValidatorCondition<ContextType>, message?: string): Validator {
   if (!message) message = 'Required'
   return {
     name: 'required',
