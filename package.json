@@ -26,7 +26,7 @@
     "postversion": "git push && git push --tags",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
+    "docs:preview": "vitepress preview docs",
     "ci:test": "jest --coverage --ci --maxWorkers=2"
   },
   "dependencies": {
@@ -60,7 +60,7 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "ts-jest": "^26.4.4",
     "typescript": "^4.1.2",
-    "vitepress": "^0.22.4",
+    "vitepress": "^1.0.0-alpha.52",
     "vue": "^3.0.0"
   },
   "keywords": [
