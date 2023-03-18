@@ -1,10 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { computed, reactive, Ref, toRef } from 'vue-demi'
 import { Field } from '.'
 import { getFromFields, getValueFromFields } from './utils'
-
-export interface FieldGroupProps {
-  [key: string]: Field | FieldGroup
-}
 
 export interface FieldGroup {
   __kind: 'FieldGroup'
@@ -29,7 +26,7 @@ export interface FieldGroup {
    * const form = fieldGroup({ address: fieldGroup({ zip: field(...) }) })
    * const zipField = form.get('address.zip')
    */
-  get(fieldName: string): Field | FieldGroupType | null
+  get(fieldName: string): Field | FieldGroup | null
   /**
    * Get a member field's value by name.
    * @param fieldName 
@@ -37,19 +34,19 @@ export interface FieldGroup {
    * const form = fieldGroup({ address: fieldGroup({ zip: field(...) }) })
    * const zipValue = form.getValue('address.zip')
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getValue(fieldName: string): any
   /**
    * Get all invalid fields / field groups within the field group.
    */
-  getErrorFields(): (Field | FieldGroupType)[]
+  getErrorFields(): (Field | FieldGroup)[]
   setTopLevel(context: FieldGroup): void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type FieldGroupType<T extends FieldGroupProps = any> = FieldGroup & {
-  [K in keyof T]: T[K]
+export type FieldGroupProps<T = any> = {
+  [K in keyof T]: T[K] extends Record<string, unknown> ? FieldGroupType<T[K]> : Field<T[K]>
 }
+
+export type FieldGroupType<T = any> = FieldGroup & FieldGroupProps<T>
 
 function internalValidate(fields: FieldGroupProps, fieldName?: string): boolean {
   let valid = true
@@ -81,7 +78,7 @@ function isValid(fields: FieldGroupProps) {
 }
 
 function internalGetErrorFields(fields: FieldGroupProps, invalid: Ref<boolean>): (Field | FieldGroupType)[] {
-  const errorFields: (Field | FieldGroup)[] = []
+  const errorFields: (Field | FieldGroupType)[] = []
   if (invalid.value) {
     for (const field of Object.entries(fields)) {
       if (field[1].invalid) {
@@ -119,7 +116,7 @@ function applyObjectPropertiesToFields(data: Record<string, unknown>, fieldGroup
  * @param fields
  * @param data
  */
-export function fieldGroup<T extends FieldGroupProps>(fields: T, data?: Record<string, unknown>): FieldGroupType<T> {
+export function fieldGroup<T = any>(fields: FieldGroupProps<T>, data?: Record<string, unknown>): FieldGroupType<T> {
   const __topLevel: FieldGroup | undefined = undefined
   const invalid = computed(() => !isValid(fields))
 
@@ -138,7 +135,7 @@ export function fieldGroup<T extends FieldGroupProps>(fields: T, data?: Record<s
 
   // inject self into child fields (assume self as top level context)
   const selfContext = { get: fieldGroupObj.get, getValue: fieldGroupObj.getValue, ...fields } as FieldGroupType<T>
-  for (const field of Object.entries(fields)) {
+  for (const field of Object.entries<Field | FieldGroup>(fields)) {
     field[1].setTopLevel(selfContext)
   }
 

@@ -9,7 +9,7 @@ jobs:
   test:
     executor:
       name: node/default
-      tag: '14.15'
+      tag: '18.15'
     steps:
       - checkout
       - node/install-packages
